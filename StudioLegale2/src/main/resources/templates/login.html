@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Login
+                </div>
+                <div class="card-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="usernameOrEmail" class="form-label">Username or Email</label>
+                            <input type="text" class="form-control" id="usernameOrEmail" name="usernameOrEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function login() {
+    var formData = {
+        usernameOrEmail: document.getElementById('usernameOrEmail').value,
+        password: document.getElementById('password').value
+    };
+
+    console.log('Login form data:', formData); // Log dei dati del modulo di login
+
+    fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        console.log('Response status:', response.status); // Log dello stato della risposta
+
+        if (response.ok) {
+            console.log('Login response:', response);
+            return response.json();
+        } else {
+            console.error('Invalid username or password');
+            alert('Invalid username or password');
+            throw new Error('Invalid username or password');
+        }
+    })
+    .then(data => {
+        console.log('Data received from server:', data); // Log dei dati ricevuti dal server
+
+        const token = data.accessToken;
+        console.log('Access token:', token); // Log del token di accesso
+
+        if (token) {
+            localStorage.setItem('accessToken', token);
+ fetch('/ciao', {
+    method: 'GET',
+    headers: {
+        'Authorization': 'Bearer ' + token
+    }
+})
+.then(response => {
+    console.log('Response status for /ciao endpoint:', response.status); // Log dello stato della risposta per l'endpoint /ciao
+    console.log('Authorization header:', response.headers.get('Authorization')); // Log dell'header Authorization
+
+                if (response.ok) {
+                    console.log('Successfully accessed /ciao endpoint');
+                    window.location.href = '/ciao';
+                } else {
+                    console.error('Error while accessing /ciao endpoint');
+                    alert('Error while accessing /ciao endpoint');
+                    throw new Error('Error while accessing /ciao endpoint');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred during /ciao endpoint request');
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred during login');
+    });
+}
+</script>
+
+</body>
+</html>
