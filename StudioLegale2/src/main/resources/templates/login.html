@@ -66,16 +66,18 @@ function login() {
         console.log('Access token:', token); // Log del token di accesso
 
         if (token) {
-            localStorage.setItem('accessToken', token);
- fetch('/ciao', {
-    method: 'GET',
-    headers: {
-        'Authorization': 'Bearer ' + token
-    }
-})
-.then(response => {
-    console.log('Response status for /ciao endpoint:', response.status); // Log dello stato della risposta per l'endpoint /ciao
-    console.log('Authorization header:', response.headers.get('Authorization')); // Log dell'header Authorization
+            localStorage.setItem('accessToken', token); // Memorizza il token nella localStorage
+
+            // Esegue la richiesta GET al server utilizzando il token
+            fetch('/ciao', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            .then(response => {
+                console.log('Response status for /ciao endpoint:', response.status); // Log dello stato della risposta per l'endpoint /ciao
+                console.log('Authorization header:', response.headers.get('Authorization')); // Log dell'header Authorization
 
                 if (response.ok) {
                     console.log('Successfully accessed /ciao endpoint');
