@@ -38,8 +38,6 @@ function login() {
         password: document.getElementById('password').value
     };
 
-    console.log('Login form data:', formData); // Log dei dati del modulo di login
-
     fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -48,57 +46,53 @@ function login() {
         body: JSON.stringify(formData)
     })
     .then(response => {
-        console.log('Response status:', response.status); // Log dello stato della risposta
-
-        if (response.ok) {
-            console.log('Login response:', response);
-            return response.json();
-        } else {
-            console.error('Invalid username or password');
-            alert('Invalid username or password');
-            throw new Error('Invalid username or password');
+        if (!response.ok) {
+            throw new Error('Errore durante il login');
         }
+        return response.json();
     })
     .then(data => {
-        console.log('Data received from server:', data); // Log dei dati ricevuti dal server
-
-        const token = data.accessToken;
-        console.log('Access token:', token); // Log del token di accesso
+        var token = data.accessToken;
 
         if (token) {
-            localStorage.setItem('accessToken', token); // Memorizza il token nella localStorage
+            localStorage.setItem('accessToken', token);
+            token = localStorage.getItem('accessToken');
+            console.log(token);
+          
+           
 
-            // Esegue la richiesta GET al server utilizzando il token
+            // Effettua la richiesta GET a /ciao utilizzando il token
             fetch('/ciao', {
                 method: 'GET',
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    "Authorization": "Bearer " + token
                 }
             })
             .then(response => {
-                console.log('Response status for /ciao endpoint:', response.status); // Log dello stato della risposta per l'endpoint /ciao
-                console.log('Authorization header:', response.headers.get('Authorization')); // Log dell'header Authorization
-
                 if (response.ok) {
-                    console.log('Successfully accessed /ciao endpoint');
+                    // Puoi fare qualcosa con la risposta, ad esempio reindirizzare l'utente
                     window.location.href = '/ciao';
                 } else {
-                    console.error('Error while accessing /ciao endpoint');
-                    alert('Error while accessing /ciao endpoint');
-                    throw new Error('Error while accessing /ciao endpoint');
+                    console.error('Errore durante l\'accesso a /ciao');
+                    alert('Errore durante l\'accesso a /ciao');
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred during /ciao endpoint request');
+                console.error('Errore durante la richiesta GET a /ciao:', error);
+                alert('Errore durante la richiesta GET a /ciao');
             });
+        } else {
+            console.error('Token non valido');
+            alert('Token non valido');
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred during login');
+        console.error('Errore durante il login:', error);
+        alert('Errore durante il login');
     });
 }
+
+
 </script>
 
 </body>

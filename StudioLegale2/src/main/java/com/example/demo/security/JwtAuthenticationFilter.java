@@ -42,43 +42,48 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         System.out.println("JwtAuthenticationFilter: Inizio esecuzione doFilterInternal");
 
-        String token = getTokenFromRequest(request);
+        if (SecurityContextHolder.getContext().getAuthentication() == null) {
+            String token = getTokenFromRequest(request);
 
-        System.out.println("JwtAuthenticationFilter: Token estratto dalla richiesta: " + token);
+            System.out.println("JwtAuthenticationFilter: Token estratto dalla richiesta: " + token);
 
-        if (StringUtils.hasText(token)) {
-            System.out.println("JwtAuthenticationFilter: Token non è vuoto, procedo con la validazione...");
+            if (StringUtils.hasText(token)) {
+                System.out.println("JwtAuthenticationFilter: Token non è vuoto, procedo con la validazione...");
 
-            if (jwtTokenProvider.validateToken(token)) {
-                String username = jwtTokenProvider.getUsername(token);
+                if (jwtTokenProvider.validateToken(token)) {
+                    String username = jwtTokenProvider.getUsername(token);
 
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-                if (userDetails != null) {
-                    System.out.println("JwtAuthenticationFilter: UserDetails recuperato correttamente: " + userDetails.toString());
+                    if (userDetails != null) {
+                        System.out.println("JwtAuthenticationFilter: UserDetails recuperato correttamente: " + userDetails.toString());
 
-                    UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                            userDetails,
-                            null,
-                            userDetails.getAuthorities()
-                    );
+                        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                                userDetails,
+                                null,
+                                userDetails.getAuthorities()
+                        );
 
-                    authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                    SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-                    System.out.println("JwtAuthenticationFilter: Utente autenticato con successo.");
+                        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                        System.out.println("JwtAuthenticationFilter: Utente autenticato con successo.");
+                    } else {
+                        System.out.println("JwtAuthenticationFilter: Impossibile ottenere l'utente associato al token.");
+                    }
                 } else {
-                    System.out.println("JwtAuthenticationFilter: Impossibile ottenere l'utente associato al token.");
+                    System.out.println("JwtAuthenticationFilter: Il token non è valido.");
                 }
             } else {
-                System.out.println("JwtAuthenticationFilter: Il token non è valido.");
+                System.out.println("JwtAuthenticationFilter: Token vuoto o non presente nella richiesta.");
             }
         } else {
-            System.out.println("JwtAuthenticationFilter: Token vuoto o non presente nella richiesta.");
+            System.out.println("JwtAuthenticationFilter: Utente già autenticato, ignorando il filtro.");
         }
 
         System.out.println("JwtAuthenticationFilter: Fine esecuzione doFilterInternal");
 
         filterChain.doFilter(request, response);
     }
+
 }

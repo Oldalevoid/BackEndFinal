@@ -10,19 +10,13 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.oauth2.client.registration.ClientRegistration;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-
-
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 import com.example.demo.security.JwtAuthenticationFilter;
 
@@ -45,7 +39,7 @@ public class SpringSecurityConfig {
     @Bean
     
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(csrf -> csrf.disable())
+    	return http.csrf(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests((authorize) -> {
                     authorize.requestMatchers("/api/auth/login").permitAll();
@@ -54,22 +48,30 @@ public class SpringSecurityConfig {
                     authorize.requestMatchers("/loginpage").permitAll();
                     authorize.requestMatchers("/registersuccess").permitAll();
                     authorize.requestMatchers("/error").permitAll();
-                    authorize.requestMatchers("/ciao").authenticated();
+                    authorize.requestMatchers("/ciao").hasAuthority("ROLE_USER");
                     authorize.anyRequest().permitAll();
 
                 })
                 //.oauth2Login(withDefaults())
+                /*
                 .formLogin(login -> {
                     login.loginPage("/loginpage"); // Imposta la pagina di login personalizzata
-                })
+                }) 
+                */
+                
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        
+                .anonymous(anonymous -> anonymous.disable()) // Disabilita l'anonimo
                 
                 .build();
-        
+    	   
         
     }
-   
+    
+
+
 
 
     @Bean
