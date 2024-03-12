@@ -43,22 +43,12 @@ public class SpringSecurityConfig {
 
                 .authorizeHttpRequests((authorize) -> {
                     authorize.requestMatchers("/api/auth/login").permitAll();
-                    authorize.requestMatchers("/").permitAll();
                     authorize.requestMatchers("/api/register/register").permitAll();
-                    authorize.requestMatchers("/loginpage").permitAll();
-                    authorize.requestMatchers("/registersuccess").permitAll();
-                    authorize.requestMatchers("/error").permitAll();
-                    authorize.requestMatchers("/ciao").hasAuthority("ROLE_USER");
-                    authorize.anyRequest().permitAll();
+                    authorize.requestMatchers("/api/customer").authenticated();
 
                 })
-                //.oauth2Login(withDefaults())
-                /*
-                .formLogin(login -> {
-                    login.loginPage("/loginpage"); // Imposta la pagina di login personalizzata
-                }) 
-                */
                 
+              
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
-public class Cliente {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremento per l'ID
@@ -21,11 +21,11 @@ public class Cliente {
     private String codiceFiscale;
 
     // Costruttore vuoto richiesto da JPA
-    public Cliente() {
+    public Customer() {
     }
 
     // Costruttore con parametri per creare un nuovo cliente
-    public Cliente(String nome, String cognome, String email, String residenza, String codiceFiscale) {
+    public Customer(String nome, String cognome, String email, String residenza, String codiceFiscale) {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
