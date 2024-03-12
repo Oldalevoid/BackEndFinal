@@ -21,10 +21,9 @@ Il Sistema di Gestione Clienti è un'applicazione che consente agli utenti di re
 
 ## Configurazione
 
-Per eseguire correttamente l'applicazione, è necessario configurare il file application.properties con le credenziali di accesso corrette per il database MySQL. Di seguito è riportato un esempio di configurazione, con la parte relativa all'username e alla password evidenziata:
+Per eseguire correttamente l'applicazione, è necessario configurare il file `application.properties` con le credenziali di accesso corrette per il database MySQL. Di seguito è riportato un esempio di configurazione, con la parte relativa all'username e alla password evidenziata:
 
-properties
-Copy code
+```properties
 spring.datasource.url = jdbc:mysql://localhost:3306/login_system
 spring.datasource.username = [Inserisci qui l'username del tuo database MySQL]
 spring.datasource.password = [Inserisci qui la password del tuo database MySQL]
@@ -38,7 +37,10 @@ logging.level.org.springframework.security=DEBUG
 app.jwt.secret= daf66e01593f61a15b857cf433aae03a005812b31234e149036bcc8dee755dbb
 app.jwt-expiration-milliseconds=604800000
 spring.thymeleaf.prefix=classpath:/templates/
-Assicurati di sostituire [Inserisci qui l'username del tuo database MySQL] e [Inserisci qui la password del tuo database MySQL] con le credenziali effettive utilizzate per accedere al tuo database MySQL.
+```
+
+Assicurati di sostituire `[Inserisci qui l'username del tuo database MySQL]` e `[Inserisci qui la password del tuo database MySQL]` con le credenziali effettive utilizzate per accedere al tuo database MySQL.
+
 
 ## Installazione e Avvio
 
