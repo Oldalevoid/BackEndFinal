@@ -1,14 +1,27 @@
 
 
-# Sistema di Gestione Clienti
+# Progetto S2I Finale - Gestionale Anagrafico per Studi Legali
 
-Il Sistema di Gestione Clienti è un'applicazione che consente agli utenti di registrarsi, effettuare il login e gestire i dati anagrafici dei clienti di uno studio professionale. L'autenticazione degli utenti avviene tramite JSON Web Token (JWT).
+
+
+Il Sistema di Gestione Clienti è un progetto  che mira a fornire una soluzione per la gestione dei dati anagrafici dei clienti di uno studio legale. L'obiettivo principale è creare un'applicazione semplice e funzionale, che possa essere utilizzata come base per futuri sviluppi o come esercizio per comprendere i principi fondamentali di sviluppo software.
 
 ## Caratteristiche Principali
 
-- Registrazione degli utenti
-- Autenticazione tramite JWT
-- Gestione dei dati anagrafici dei clienti (creazione, modifica ed eliminazione)
+### 1. Registrazione degli Utenti
+- Permette agli utenti di registrarsi fornendo le informazioni necessarie, come nome, email e password.
+- Le credenziali degli utenti vengono validate e memorizzate in modo sicuro nel sistema.
+
+### 2. Autenticazione tramite JWT
+- Utilizza JSON Web Token (JWT) per l'autenticazione degli utenti.
+- Dopo il login, agli utenti viene assegnato un token JWT che viene utilizzato per autorizzare le richieste successive al server.
+
+### 3. Gestione dei Dati Anagrafici dei Clienti
+- Gli utenti autenticati possono accedere alle funzionalità di gestione dei dati anagrafici dei clienti.
+- Supporta operazioni CRUD (creazione, lettura, aggiornamento ed eliminazione) per i dati dei clienti.
+
+## Panoramica del Progetto
+Il progetto si concentrasulla parte back-end dell'applicazione, con lo sviluppo di API REST per la gestione dei dati dei clienti. Utilizza tecnologie comuni come Java con Spring Boot e MySQL per la persistenza dei dati.
 
 ## Tecnologie Utilizzate
 
