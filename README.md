@@ -6,44 +6,48 @@
 
 Il Sistema di Gestione Clienti è un progetto  che mira a fornire una soluzione per la gestione dei dati anagrafici dei clienti di uno studio legale. L'obiettivo principale è creare un'applicazione semplice e funzionale, che possa essere utilizzata come base per futuri sviluppi o come esercizio per comprendere i principi fondamentali di sviluppo software.
 
-## Struttura
+## Struttura del Progetto
 
+```
 StudioLegale2 (boot) [BackEndFinal master]
 │
 └── src/main/java
-├── com.example.demo
-│ ├── StudioLegaleApplication.java
-│ ├── config
-│ │ └── SpringSecurityConfig.java
-│ ├── controller
-│ │ ├── AuthController.java
-│ │ ├── CustomerController.java
-│ │ └── RegistrationController.java
-│ ├── dto
-│ │ ├── JWTAuthResponse.java
-│ │ └── LoginDto.java
-│ ├── model
-│ │ ├── Customer.java
-│ │ ├── Role.java
-│ │ └── User.java
-│ ├── repository
-│ │ ├── ClienteRepository.java
-│ │ ├── RoleRepository.java
-│ │ └── UserRepository.java
-│ ├── security
-│ │ ├── CustomUserDetailsService.java
-│ │ ├── JwtAuthenticationEntryPoint.java
-│ │ ├── JwtAuthenticationFilter.java
-│ │ └── JwtTokenProvider.java
-│ └── service
-│ ├── AuthService.java
-│ ├── AuthServiceImpl.java
-│ ├── ClienteService.java
-│ ├── RoleService.java
-│ └── UserService.java
-└── src/main/resources
-└── application.properties
-  
+    ├── com.example.demo
+    │   ├── StudioLegaleApplication.java
+    │   ├── config
+    │   │   └── SpringSecurityConfig.java
+    │   ├── controller
+    │   │   ├── AuthController.java
+    │   │   ├── CustomerController.java
+    │   │   └── RegistrationController.java 
+    │   ├── dto 
+    │   │   ├── JWTAuthResponse.java 
+    │   │   └── LoginDto.java 
+    │   ├── model 
+    │   │   ├── Customer.java 
+    │   │   ├── Role.java 
+    │   │   └── User.java 
+    │   ├── repository 
+    │   │   ├── ClienteRepository.java 
+    │   │   ├── RoleRepository.java 
+    │   │   └── UserRepository.java
+    │   ├── security  
+    │   │   ├── CustomUserDetailsService.java  
+    │   │   ├── JwtAuthenticationEntryPoint.java  
+    │   │   ├── JwtAuthenticationFilter.java  
+    │   │   └── JwtTokenProvider.java   
+    │   └── service   
+    │       ├── AuthService.java   
+    │       ├── AuthServiceImpl.java   
+    │       ├── ClienteService.java   
+    │       ├── RoleService.java    
+    │       └── UserService.java    
+    └── src/main/resources    
+        └── application.properties      
+```
+
+Questa è la struttura del progetto, organizzata in base ai pacchetti Java. Ogni pacchetto contiene file sorgente o risorse specifiche del progetto.
+
 
 
 ## Caratteristiche Principali
