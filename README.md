@@ -6,41 +6,42 @@
 
 Il Sistema di Gestione Clienti è un progetto  che mira a fornire una soluzione per la gestione dei dati anagrafici dei clienti di uno studio legale. L'obiettivo principale è creare un'applicazione semplice e funzionale, che possa essere utilizzata come base per futuri sviluppi o come esercizio per comprendere i principi fondamentali di sviluppo software.
 
-## Struttura 
-- StudioLegale2 (boot) [BackEndFinal master]
-    - src/main/java
-        - com.example.demo
-            - StudioLegaleApplication.java
-        - com.example.demo.config
-            - SpringSecurityConfig.java
-        - com.example.demo.controller
-            - AuthController.java
-            - CustomerController.java
-            - RegistrationController.java 
-        - com.example.demo.dto 
-            - JWTAuthResponse.java 
-            - LoginDto.java 
-        - com.example.demo.model 
-            - Customer.java 
-            - Role.java 
-            - User.java 
-        - com.example.demo.repository 
-            - ClienteRepository.java 
-            - RoleRepository.java 
-            — UserRepository.java
-         — com.example.demo.security  
-           — CustomUserDetailsService.java  
-           — JwtAuthenticationEntryPoint.java  
-           — JwtAuthenticationFilter.java  
-           — JwtTokenProvider.java   
-         — com.example.demo.service   
-           — AuthService.java   
-           — AuthServiceImpl.java   
-           — ClienteService.java   
-           — RoleService.java    
-           – UserService.java    
-         – src/main/resources    
-           – application.properties     
+StudioLegale2 (boot) [BackEndFinal master]
+│
+└── src/main/java
+    ├── com.example.demo
+    │   ├── StudioLegaleApplication.java
+    │   ├── config
+    │   │   └── SpringSecurityConfig.java
+    │   ├── controller
+    │   │   ├── AuthController.java
+    │   │   ├── CustomerController.java
+    │   │   └── RegistrationController.java 
+    │   ├── dto 
+    │   │   ├── JWTAuthResponse.java 
+    │   │   └── LoginDto.java 
+    │   ├── model 
+    │   │   ├── Customer.java 
+    │   │   ├── Role.java 
+    │   │   └── User.java 
+    │   ├── repository 
+    │   │   ├── ClienteRepository.java 
+    │   │   ├── RoleRepository.java 
+    │   │   └── UserRepository.java
+    │   ├── security  
+    │   │   ├── CustomUserDetailsService.java  
+    │   │   ├── JwtAuthenticationEntryPoint.java  
+    │   │   ├── JwtAuthenticationFilter.java  
+    │   │   └── JwtTokenProvider.java   
+    │   └── service   
+    │       ├── AuthService.java   
+    │       ├── AuthServiceImpl.java   
+    │       ├── ClienteService.java   
+    │       ├── RoleService.java    
+    │       └── UserService.java    
+    └── src/main/resources    
+        └── application.properties      
+
   
 
 
