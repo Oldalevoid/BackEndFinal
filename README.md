@@ -163,3 +163,38 @@ Per utilizzare correttamente le API REST relative ai clienti utilizzando Postman
 Seguendo queste istruzioni, potrai interagire correttamente con le API REST relative ai clienti utilizzando Postman. Assicurati di includere tutti i dettagli necessari nei dati inviati e di utilizzare gli endpoint corretti per ogni operazione.
 
 --
+
+Ecco le dipendenze utilizzate nel progetto Maven, insieme alle rispettive versioni:
+
+- **Spring Boot**:
+  - Versione: 3.2.3
+  - Dipendenze:
+    - `spring-boot-starter-data-jpa`
+    - `spring-boot-starter-security`
+    - `spring-boot-starter-oauth2-client`
+    - `spring-boot-starter-thymeleaf`
+    - `spring-boot-starter-web`
+    - `spring-boot-starter-test`
+    - `spring-boot-starter-validation`
+    - `spring-boot-starter-actuator`
+    - `spring-boot-starter`
+
+- **JSON Web Token (JWT)**:
+  - Versione: 0.11.5
+  - Dipendenze:
+    - `jjwt-impl`
+    - `jjwt-api`
+    - `jjwt-jackson`
+
+- **MySQL Connector/J**:
+  - Versione: 8.0.28
+  - Dipendenze:
+    - `mysql-connector-java`
+
+- **Thymeleaf Extras Spring Security**:
+  - Dipendenza: `thymeleaf-extras-springsecurity6`
+
+- **Lombok**:
+  - Versione: 1.18.22
+  - Dipendenza: `lombok`
+
