@@ -27,18 +27,18 @@ Il Sistema di Gestione Clienti è un progetto  che mira a fornire una soluzione 
         - com.example.demo.repository 
             - ClienteRepository.java 
             - RoleRepository.java 
-            — UserRepository .java
+            — UserRepository.java
          — com.example.demo.security  
-           — CustomUserDetailsService .java  
-           — JwtAuthenticationEntryPoint .java  
-           — JwtAuthenticationFilter .java  
-           — JwtTokenProvider .java   
+           — CustomUserDetailsService.java  
+           — JwtAuthenticationEntryPoint.java  
+           — JwtAuthenticationFilter.java  
+           — JwtTokenProvider.java   
          — com.example.demo.service   
-           — AuthService .java   
-           — AuthServiceImpl .java   
-           — ClienteService .java   
-           — RoleService . java    
-           – UserService. java    
+           — AuthService.java   
+           — AuthServiceImpl.java   
+           — ClienteService.java   
+           — RoleService.java    
+           – UserService.java    
          – src/main/resources    
            – application.properties     
   
