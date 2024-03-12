@@ -1,6 +1,4 @@
-Per migliorare l'usabilità e la comprensione del tuo progetto, ecco una bozza del README che potresti scrivere:
 
----
 
 # Sistema di Gestione Clienti
 
@@ -106,20 +104,61 @@ Certamente, ampliamo punto per punto le istruzioni per l'utilizzo:
 
 Queste istruzioni forniranno agli utenti una guida dettagliata su come registrarsi, effettuare il login e utilizzare l'applicazione per gestire i dati anagrafici dei clienti.
 
-## Contributi
+## Gestione Anagrafica 
 
-Se desideri contribuire a questo progetto, segui questi passaggi:
+Per utilizzare correttamente le API REST relative ai clienti utilizzando Postman, segui le istruzioni dettagliate di seguito:
 
-1. Fai una fork del repository.
-2. Crea un branch con una nuova funzionalità (`git checkout -b feature/nome-funzionalità`).
-3. Fai commit delle tue modifiche (`git commit -am 'Aggiungi una nuova funzionalità'`).
-4. Fai push del branch (`git push origin feature/nome-funzionalità`).
-5. Apri una pull request.
+1. **Creazione di un Cliente:**
+   - Crea una nuova richiesta di tipo POST su Postman.
+   - Imposta l'URL dell'endpoint su `http://localhost:8080/api/customer`.
+   - Seleziona il formato del corpo della richiesta come JSON.
+   - Inserisci i dati del cliente nel corpo della richiesta. Ad esempio:
 
-## Licenza
+     ```json
+     {
+         "nome": "Mario",
+         "cognome": "Rossi",
+         "email": "mario.rossi@example.com",
+         "residenza": "Via Roma 123",
+         "codiceFiscale": "RSSMRA80A01H501T"
+     }
+     ```
 
-Questo progetto è distribuito con licenza [MIT](LICENSE).
+   - Invia la richiesta. Se i dati sono validi e non esiste già un cliente con lo stesso codice fiscale, riceverai una risposta con lo status code 200 OK e i dettagli del cliente creato.
 
----
+2. **Aggiornamento di un Cliente:**
+   - Crea una nuova richiesta di tipo PUT su Postman.
+   - Imposta l'URL dell'endpoint su `http://localhost:8080/api/customer/{id}`, dove `{id}` è l'ID del cliente che desideri aggiornare.
+   - Seleziona il formato del corpo della richiesta come JSON.
+   - Inserisci i nuovi dati del cliente nel corpo della richiesta. Ad esempio:
 
-Assicurati di personalizzare il README in base alle specifiche del tuo progetto e di includere tutte le informazioni necessarie per farlo funzionare correttamente. Buona fortuna con il tuo progetto!
+     ```json
+     {
+         "nome": "Mario",
+         "cognome": "Bianchi",
+         "email": "mario.bianchi@example.com",
+         "residenza": "Via Milano 456",
+         "codiceFiscale": "RSSMBN80A01H501T"
+     }
+     ```
+
+   - Invia la richiesta. Se i dati sono validi e l'ID del cliente esiste nel database, riceverai una risposta con lo status code 200 OK e i dettagli del cliente aggiornato.
+
+3. **Recupero di Tutti i Clienti:**
+   - Crea una nuova richiesta di tipo GET su Postman.
+   - Imposta l'URL dell'endpoint su `http://localhost:8080/api/customer`.
+   - Invia la richiesta. Riceverai una risposta con lo status code 200 OK e una lista contenente tutti i clienti presenti nel database.
+
+4. **Recupero di un Cliente Specifico:**
+   - Crea una nuova richiesta di tipo GET su Postman.
+   - Imposta l'URL dell'endpoint su `http://localhost:8080/api/customer/{id}`, dove `{id}` è l'ID del cliente che desideri recuperare.
+   - Invia la richiesta. Se l'ID del cliente esiste nel database, riceverai una risposta con lo status code 200 OK e i dettagli del cliente specifico.
+
+5. **Eliminazione di un Cliente:**
+   - Crea una nuova richiesta di tipo DELETE su Postman.
+   - Imposta l'URL dell'endpoint su `http://localhost:8080/api/customer/{id}`, dove `{id}` è l'ID del cliente che desideri eliminare.
+   - Invia la richiesta. Se l'ID del cliente esiste nel database e l'eliminazione è avvenuta con successo, riceverai una risposta con lo status code 204 No Content.
+
+Seguendo queste istruzioni, potrai interagire correttamente con le API REST relative ai clienti utilizzando Postman. Assicurati di includere tutti i dettagli necessari nei dati inviati e di utilizzare gli endpoint corretti per ogni operazione.
+
+--
