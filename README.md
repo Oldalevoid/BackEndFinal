@@ -49,7 +49,7 @@ Per eseguire l'applicazione, segui questi passaggi:
 
 1. Clona il repository sul tuo computer.
 2. Configura correttamente il file `application.properties`.
-3. Compila ed esegui l'applicazione utilizzando Maven o un IDE come IntelliJ o Eclipse.
+3. Compila ed esegui l'applicazione utilizzando Maven o un IDE come IntelliJ o Eclipse (Progetto sviluppato utilizzando SpringToolSuite 4).
 
 ```bash
 git clone https://github.com/utente/nome-progetto.git
@@ -57,12 +57,54 @@ cd nome-progetto
 mvn spring-boot:run
 ```
 
-## Utilizzo
+Certamente, ampliamo punto per punto le istruzioni per l'utilizzo:
 
-1. Registra un nuovo utente inviando una richiesta POST all'endpoint `/api/register/register` con i dati richiesti.
-2. Effettua il login inviando una richiesta POST all'endpoint `/api/auth/login` con le credenziali dell'utente.
-3. Utilizza il token JWT ottenuto per accedere alle altre funzionalità dell'applicazione.
-4. Gestisci i dati anagrafici dei clienti inviando richieste alle API REST relative ai clienti.
+1. **Registra un nuovo utente inviando una richiesta POST all'endpoint `/api/register/register` con i dati richiesti:**
+
+    - Utilizzando un'applicazione per fare richieste HTTP come Postman, crea una nuova richiesta di tipo POST.
+    - Imposta l'URL dell'endpoint su `http://localhost:8080/api/register/register`.
+    - Seleziona il formato del corpo della richiesta come JSON.
+    - Inserisci i dati dell'utente nel corpo della richiesta. Ad esempio:
+
+    ```json
+    {
+        "name": "Nome Utente",
+        "username": "username",
+        "email": "email@example.com",
+        "password": "password"
+    }
+    ```
+
+    - Invia la richiesta. Se i dati inseriti sono validi e non esistono già altri utenti con lo stesso username o email, riceverai una risposta con lo status code 200 OK e il messaggio "User registered successfully". In caso contrario, riceverai un messaggio di errore indicante il problema riscontrato.
+
+2. **Effettua il login inviando una richiesta POST all'endpoint `/api/auth/login` con le credenziali dell'utente:**
+
+    - Crea una nuova richiesta di tipo POST su Postman.
+    - Imposta l'URL dell'endpoint su `http://localhost:8080/api/auth/login`.
+    - Seleziona il formato del corpo della richiesta come JSON.
+    - Inserisci le credenziali dell'utente nel corpo della richiesta. Ad esempio:
+
+    ```json
+    {
+        "usernameOrEmail": "username",
+        "password": "password"
+    }
+    ```
+
+    - Invia la richiesta. Se le credenziali sono corrette, riceverai una risposta con lo status code 200 OK e un token JWT nel corpo della risposta. Questo token sarà utilizzato per autenticare le successive richieste.
+
+3. **Utilizza il token JWT ottenuto per accedere alle altre funzionalità dell'applicazione:**
+
+    - Dopo aver ottenuto il token JWT dalla richiesta di login, includilo nell'header Authorization di tutte le richieste successive.
+    - Quando invii una richiesta per gestire i dati anagrafici dei clienti o accedere ad altre funzionalità protette, assicurati di includere il token JWT nell'header Authorization come segue:
+
+    ```
+    Authorization: Bearer [token JWT]
+    ```
+
+    - Includi questo header nelle tue richieste POST, PUT, GET e DELETE per accedere alle API REST relative ai clienti o ad altre funzionalità dell'applicazione.
+
+Queste istruzioni forniranno agli utenti una guida dettagliata su come registrarsi, effettuare il login e utilizzare l'applicazione per gestire i dati anagrafici dei clienti.
 
 ## Contributi
 
